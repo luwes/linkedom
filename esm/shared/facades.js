@@ -2,7 +2,6 @@ import {Attr as _Attr} from '../interface/attr.js';
 import {CharacterData as _CharacterData} from '../interface/character-data.js';
 import {CDATASection as _CDATASection} from '../interface/cdata-section.js';
 import {Comment as _Comment} from '../interface/comment.js';
-import {DocumentFragment as _DocumentFragment} from '../interface/document-fragment.js';
 import {DocumentType as _DocumentType} from '../interface/document-type.js';
 import {Element as _Element} from '../interface/element.js';
 import {Node as _Node} from '../interface/node.js';
@@ -32,10 +31,6 @@ CharacterData.prototype = _CharacterData.prototype;
 export function Comment() { illegalConstructor(); }
 setPrototypeOf(Comment, _Comment);
 Comment.prototype = _Comment.prototype;
-
-export function DocumentFragment() { illegalConstructor(); }
-setPrototypeOf(DocumentFragment, _DocumentFragment);
-DocumentFragment.prototype = _DocumentFragment.prototype;
 
 export function DocumentType() { illegalConstructor(); }
 setPrototypeOf(DocumentType, _DocumentType);
@@ -67,7 +62,6 @@ export const Facades = {
   CDATASection,
   CharacterData,
   Comment,
-  DocumentFragment,
   DocumentType,
   Element,
   Node,

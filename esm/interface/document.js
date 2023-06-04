@@ -47,6 +47,7 @@ const globalExports = assign(
   HTMLClasses,
   {
     CustomEvent,
+    DocumentFragment,
     Event,
     EventTarget,
     InputEvent,
