@@ -1,10 +1,17 @@
-import {HTMLElement} from './element.js';
+import {HTMLMediaElement} from './media-element.js';
+import {registerHTMLClass} from '../shared/register-html-class.js';
+
+const tagName = 'video';
 
 /**
  * @implements globalThis.HTMLVideoElement
  */
-export class HTMLVideoElement extends HTMLElement {
-  constructor(ownerDocument, localName = 'video') {
+class HTMLVideoElement extends HTMLMediaElement {
+  constructor(ownerDocument, localName = tagName) {
     super(ownerDocument, localName);
   }
 }
+
+registerHTMLClass(tagName, HTMLVideoElement);
+
+export {HTMLVideoElement};
