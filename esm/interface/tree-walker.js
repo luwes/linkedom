@@ -1,5 +1,6 @@
 import {
   DOCUMENT_NODE,
+  DOCUMENT_FRAGMENT_NODE,
   ELEMENT_NODE,
   TEXT_NODE,
   CDATA_SECTION_NODE,
@@ -33,8 +34,29 @@ const isOK = ({nodeType}, mask) => {
 export class TreeWalker {
   constructor(root, whatToShow = SHOW_ALL) {
     this.root = root;
-    this.currentNode = root;
     this.whatToShow = whatToShow;
+    this._currentNode = root;
+    this._createNodes(root);
+  }
+
+  set currentNode(currentNode) {
+    this._currentNode = currentNode;
+    if (currentNode.nodeType === DOCUMENT_FRAGMENT_NODE) {
+      this._createNodes(currentNode);
+    }
+  }
+
+  get currentNode() {
+    return this._currentNode;
+  }
+
+  nextNode() {
+    const $ = this[PRIVATE];
+    this._currentNode = $.i < $.nodes.length ? $.nodes[$.i++] : null;
+    return this._currentNode;
+  }
+
+  _createNodes(root) {
     let {[NEXT]: next, [END]: end} = root;
     if (root.nodeType === DOCUMENT_NODE) {
       const {documentElement} = root;
@@ -43,16 +65,10 @@ export class TreeWalker {
     }
     const nodes = [];
     while (next !== end) {
-      if (isOK(next, whatToShow))
+      if (isOK(next, this.whatToShow))
         nodes.push(next);
       next = next[NEXT];
     }
     this[PRIVATE] = {i: 0, nodes};
-  }
-
-  nextNode() {
-    const $ = this[PRIVATE];
-    this.currentNode = $.i < $.nodes.length ? $.nodes[$.i++] : null;
-    return this.currentNode;
   }
 }
