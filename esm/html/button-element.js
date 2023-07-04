@@ -22,6 +22,8 @@ class HTMLButtonElement extends HTMLElement {
 
   get type() { return this.getAttribute('type'); }
   set type(value) { this.setAttribute('type', value); }
+
+  get validity() { return { valid: true }; }
   /* c8 ignore stop */
 }
 

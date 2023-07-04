@@ -31,6 +31,8 @@ class HTMLInputElement extends HTMLElement {
 
   get value() { return stringAttribute.get(this, 'value'); }
   set value(value) { stringAttribute.set(this, 'value', value); }
+
+  get validity() { return { valid: true }; }
   /* c8 ignore stop */
 }
 
