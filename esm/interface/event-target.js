@@ -5,7 +5,7 @@ const wm = new WeakMap();
 function dispatch(event, listener) {
   if (typeof listener === 'function')
     listener.call(event.target, event);
-  else
+  else if (typeof listener === 'object')
     listener.handleEvent(event);
   return event._stopImmediatePropagationFlag;
 }
